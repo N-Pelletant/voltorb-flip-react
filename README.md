@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Todo
 ## App<br/>
-  - [ ] Get the possible cards distributions
+  - [X] Get the possible cards distributions
   - [ ] Create architecture of files
   - [ ] Create tests for each components
 ## Rule card<br/>
