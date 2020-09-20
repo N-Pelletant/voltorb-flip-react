@@ -1,13 +1,37 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+:root {
+  --game-width: 340px;
+  --banner-border: solid gray 2px;
+  --bg-lightColor: #29a56b;
+  --bg-darkColor: #188463;
+  --bg-image: 
+    linear-gradient(45deg, var(--bg-lightColor) 25%, transparent 25%), 
+    linear-gradient(-45deg, var(--bg-lightColor) 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, var(--bg-lightColor) 75%), 
+    linear-gradient(-45deg, transparent 75%, var(--bg-lightColor) 75%);
+  --card-size: 40px;
+  --card-spacing: 7px;
+  --card-border: solid white 3px;
+  --card-int-1: red;
+  --card-int-2: green;
+  --card-int-3: orange;
+  --card-int-4: blue;
+  --card-int-5: purple;
+  --card-face-center: #b58882;
+  --card-face-border-color: #4a3931;
+  --card-face-border: 
+    linear-gradient(0deg, var(--card-face-border-color) 2%, transparent 10%), 
+    linear-gradient(180deg, var(--card-face-border-color) 2%, transparent 10%), 
+    linear-gradient(90deg, transparent 90%, var(--card-face-border-color) 98%), 
+    linear-gradient(-90deg, transparent 90%, var(--card-face-border-color) 98%);
 }
