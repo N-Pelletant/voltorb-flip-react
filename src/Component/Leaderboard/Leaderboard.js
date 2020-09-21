@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Interface from '../../WebInterface';
+import Spinner from './../UI/Spinner/Spinner';
 import classes from './Leaderboard.module.css';
 
 class Leaderboard extends Component {
@@ -7,28 +9,43 @@ class Leaderboard extends Component {
     error: false
   }
 
-  componentDidMount = () => {
-    this.setState({
-      leaders: [
-        { name: "Pupuce", score: "12260", id: "kcher", },
-        { name: "Lewiss", score: "09999", id: "fkhar", },
-        { name: "Maggie", score: "00123", id: "zefad", },
-        { name: "Cartmn", score: "00100", id: "raere", },
-        { name: "Toriko", score: "00000", id: "aregg", },
-      ]
-    })
+  componentDidMount = async () => {
+    try {
+      const lb = await Interface.get('/leaderboard.json');
+
+      const bestPlayers = Object.entries(lb.data)
+        .sort((p1, p2) => p2[1] - p1[1])
+        .splice(0, 5)
+        .map((player, index) => {
+          return {
+            name: player[0],
+            score: parseInt(player[1]),
+            key: "bestPlayer" + index
+          }
+        });
+
+      this.setState({
+        leaders: bestPlayers
+      })
+    } catch (e) {
+      this.setState({error: e})
+    }
   }
 
   render() {
-    let rows = <p>Loading...!</p>;
+    let rows = <Spinner />;
+
+    if (this.state.error) {
+      rows = <p>{this.state.error.message}</p>
+    }
 
     if (this.state.leaders) {
-      rows = this.state.leaders.map((leader, index) => {
-        return <div key={leader.id}>
+      rows = this.state.leaders.map((leader, index) => (
+        <div key={leader.key}>
           <p><span>{index + 1}</span> {leader.name}</p>
           <p>{leader.score}</p>
         </div>
-      });
+      ));
     }
 
     return <div className={classes.Leaderboard}>

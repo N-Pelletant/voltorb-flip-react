@@ -1,10 +1,12 @@
 .Modal {
+  background-color: var(--bg-lightColor);
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  transition: transform 0.3s ease-out;
 }
 
 .Modal * {

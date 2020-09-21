@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import Spinner from '../UI/Spinner/Spinner';
+import Modal from '../UI/Modal/Modal';
 import classes from './Game.module.css';
+import distributions from '../../assets/Distributions';
 
 class Game extends Component {
   state = {
-    distributions: null,
-    gameStarted: false,
-    loading: true,
-    error: false,
+    distributions: distributions,
+    inputUsername: true,
     player: {
       level: 1,
       name: "",
@@ -18,16 +17,12 @@ class Game extends Component {
 
   nameInput = React.createRef();
 
-  componentDidMount = () => {
-    
-  }
-
   startGameHandler = () => {
     const username = this.nameInput.current.value;
 
     this.setState(oldState => (
       {
-        gameStarted: true,
+        inputUsername: !oldState.inputUsername,
         player: {
           ...oldState.player,
           name: username
@@ -37,22 +32,14 @@ class Game extends Component {
   };
 
   render() {
-    const display = <Spinner />;
-
-    // return (
-    //   <div className={classes.Game}>
-    //     <Modal show>
-    //       <div>
-    //         <label>Choose your username :</label>
-    //         <input type="text" ref={this.nameInput} />
-    //       </div>
-    //       <button onClick={this.startGameHandler}>Start game</button>
-    //     </Modal>
-    //   </div>
-    // );
-
     return <div className={classes.Game}>
-      {display}
+      <Modal show={this.state.inputUsername}>
+          <div>
+            <label>Choose your username :</label>
+            <input type="text" ref={this.nameInput} />
+          </div>
+          <button onClick={this.startGameHandler}>Start game</button>
+        </Modal>
     </div>;
   }
 }
