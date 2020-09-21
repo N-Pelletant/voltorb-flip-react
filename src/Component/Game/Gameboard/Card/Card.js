@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classes from './Card.module.css';
 
 import card0 from './../../../../assets/images/cards/0.png';
@@ -8,8 +8,6 @@ import card3 from './../../../../assets/images/cards/3.png';
 
 function Card({ value, faceUp }) {
   let pic = {};
-
-  let [face, flipFace] = useState(true)
 
   switch (value) {
     case 0:
@@ -33,12 +31,12 @@ function Card({ value, faceUp }) {
   }
 
   const addedClasses = [classes.Card]
-  if(face) addedClasses.push(classes.flip)
+  if(faceUp) addedClasses.push(classes.flip)
 
   return (
     <div
       className={addedClasses.join(' ')}
-      onClick={() => flipFace(!face)}>
+      onClick={() => console.log("Clicked")}>
       <div className={classes.Back}></div>
       <img className={classes.Front} src={pic.src} alt={pic.alt} />
     </div>);

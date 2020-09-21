@@ -1,0 +1,7 @@
+.Hint {
+  width: var(--card-size);
+  height: var(--card-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,9 +1,9 @@
 .Game {
   width: var(--game-width);
-  height: 90vh;
+  height: 95vh;
   overflow: hidden;
   position: relative;
-  background-color: var(--bg-lightColor);
-  border: 1px solid white;
+  background-color: var(--bg-darkColor);
+  border: 2px solid white;
   border-radius: 10px;
 }

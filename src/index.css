@@ -35,3 +35,8 @@ code {
     linear-gradient(90deg, transparent 90%, var(--card-face-border-color) 98%), 
     linear-gradient(-90deg, transparent 90%, var(--card-face-border-color) 98%);
 }
+
+@font-face {
+  font-family: "OpenMine";
+  src: url('./assets/font/OpenMine.ttf');
+}

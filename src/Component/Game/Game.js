@@ -3,6 +3,7 @@ import Modal from '../UI/Modal/Modal';
 import classes from './Game.module.css';
 import distributions from '../../assets/Distributions';
 import Cockpit from './Cockpit/Cockpit';
+import Gameboard from './Gameboard/Gameboard';
 
 class Game extends Component {
   state = {
@@ -15,7 +16,6 @@ class Game extends Component {
       totalScore: 0,
     }
   }
-
   nameInput = React.createRef();
 
   startGameHandler = () => {
@@ -42,6 +42,7 @@ class Game extends Component {
         <button onClick={this.startGameHandler}>Start game</button>
       </Modal>
       <Cockpit {...this.state.player}/>
+      <Gameboard />
     </div>;
   }
 }
