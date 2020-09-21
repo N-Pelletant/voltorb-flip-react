@@ -1,0 +1,29 @@
+.RuleCard {
+  color: white;
+  max-width: 250px;
+  text-align: justify;
+  background-color: var(--bg-lightColor);
+  border: var(--card-border);
+  border-color: var(--bg-darkColor);
+  border-radius: 5px;
+  filter: brightness(90%);
+}
+
+.RuleCard * {
+  padding: 0;
+  margin: 10px;
+}
+
+.RuleCard h1,
+.RuleCard h3 {
+  text-align: center;
+}
+
+.RuleCard h1::after,
+.RuleCard h3::after {
+  content: "";
+  float: right;
+  width: 100%;
+  border: solid 2px var(--bg-darkColor);
+  border-radius: 2px;
+}

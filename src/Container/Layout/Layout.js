@@ -1,10 +1,15 @@
 import React from 'react';
-import classes from './Layout.css';
+import Leaderboard from '../../Component/Leaderboard/Leaderboard';
+import Game from '../../Component/Game/Game';
+import RuleCard from '../../Component/RuleCard/RuleCard';
+import classes from './Layout.module.css';
 
 function Layout() {
   return (
     <div className={classes.Layout}>
-
+      <Leaderboard />
+      <Game />
+      <RuleCard /> 
     </div>
   );
 }

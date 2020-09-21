@@ -1,0 +1,48 @@
+.Leaderboard {
+  color: white;
+  width: 200px;
+  min-width: fit-content;
+  background-color: var(--bg-lightColor);
+  border: var(--card-border);
+  border-color: var(--bg-darkColor);
+  border-radius: 5px;
+  padding: 10px;
+  filter: brightness(90%);
+}
+
+.Leaderboard > * {
+  padding: 0;
+  margin: 10px;
+}
+
+.Leaderboard h1 {
+  text-align: center;
+}
+
+.Leaderboard h1::after {
+  content: "";
+  float: right;
+  width: 100%;
+  border: solid 2px var(--bg-darkColor);
+  border-radius: 2px;
+}
+
+.Leaderboard div {
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Leaderboard p {
+  padding: 0;
+  margin: 0 10px;
+}
+
+.Leaderboard span {
+  display: inline-block;
+  text-align: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--bg-darkColor);
+  border-radius: 50%;
+}

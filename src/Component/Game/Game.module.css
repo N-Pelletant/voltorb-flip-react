@@ -1,0 +1,8 @@
+.Game {
+  width: 400px;
+  height: 90vh;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--bg-lightColor);
+  border: 3px solid var(--bg-darkColor);
+}
