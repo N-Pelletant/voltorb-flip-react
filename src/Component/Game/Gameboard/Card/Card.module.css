@@ -1,0 +1,31 @@
+.Card {
+  width: var(--card-size);
+  height: var(--card-size);
+  transform-style: preserve-3d;
+  transition: 300ms;
+  transform: perspective(100px) rotateY(var(--rotateY, 0));
+  border: 1px solid white;  
+  position: relative;
+}
+
+.Card.flip {
+  --rotateY: 180DEG;
+}
+
+.Front,
+.Back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-shadow: 1px 1px black;
+  backface-visibility: hidden;
+}
+
+.Front {
+  transform: rotateY(180DEG);
+}
+
+.Back {
+  background-color: var(--bg-image);
+  background-size: calc(100% / 3);
+}

@@ -1,0 +1,25 @@
+.Cockpit{
+  display: grid;
+  grid-template:
+    "banner   banner   banner   banner",
+    "card1    card2    card3    nbrExpl", 
+    ".        .        cardBomb bombExpl", 
+    "crtScore crtScore crtScore crtScore", 
+    "ttlScore ttlScore ttlScore ttlScore", 
+  ;
+}
+
+.Banner{
+  grid-area: "banner";
+  margin: 0.5rem 0;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px black;
+  background-color: var(--bg-darkColor);
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+}
+
+.Banner h2{
+  margin: 0.1rem;
+}
