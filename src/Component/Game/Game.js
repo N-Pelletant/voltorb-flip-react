@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Modal from '../UI/Modal/Modal';
 import classes from './Game.module.css';
 import distributions from '../../assets/Distributions';
+import Cockpit from './Cockpit/Cockpit';
 
 class Game extends Component {
   state = {
@@ -28,18 +29,19 @@ class Game extends Component {
           name: username
         }
       }
-    ), console.log(this.state))
+    ))
   };
 
   render() {
     return <div className={classes.Game}>
       <Modal show={this.state.inputUsername}>
-          <div>
-            <label>Choose your username :</label>
-            <input type="text" ref={this.nameInput} />
-          </div>
-          <button onClick={this.startGameHandler}>Start game</button>
-        </Modal>
+        <div>
+          <label>Choose your username :</label>
+          <input type="text" ref={this.nameInput} />
+        </div>
+        <button onClick={this.startGameHandler}>Start game</button>
+      </Modal>
+      <Cockpit {...this.state.player}/>
     </div>;
   }
 }
