@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Hint.module.css';
+import bomb from './../../../../assets/images/bomb_bgless.png';
 
 function Hint(props) {
   const bgColor = {
@@ -11,9 +12,9 @@ function Hint(props) {
       <p style={bgColor}>
         {props.sum}
       </p>
-      <p style={bgColor}>
-        {props.bombs}
-      </p>
+      <div style={bgColor}>
+        <img src={bomb} alt=""/><p>{props.bomb}</p>
+      </div>
     </div>
   );
 }

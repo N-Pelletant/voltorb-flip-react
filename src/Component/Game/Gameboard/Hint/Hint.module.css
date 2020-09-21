@@ -1,7 +1,39 @@
 .Hint {
   width: var(--card-size);
   height: var(--card-size);
+  background-color: white;
+  border: 3px solid white;
+  border-radius: 5px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+}
+
+.Hint>div {
+  height: 18px;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Hint p {
+  height: 18px;
+  margin: 0;
+  padding: 0 3px;
+  width: 100%;
+  text-align: right;
+  font-size: 14px;
+  font-weight: bold;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+.Hint img {
+  padding: 0;
+  margin: 0 auto;
+  width: 18px;
+  height: 18px;
 }
