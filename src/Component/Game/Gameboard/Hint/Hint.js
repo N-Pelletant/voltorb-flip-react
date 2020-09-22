@@ -4,11 +4,13 @@ import bomb from './../../../../assets/images/bomb_bgless.png';
 
 function Hint(props) {
   const bgColor = {
-    backgroundColor: `var(--card-int-${props.cssVar})`,
+    backgroundColor: `var(--card-int-${props.colorId})`,
   }
 
   return (
-    <div className={classes.Hint}>
+    <div 
+      className={classes.Hint}
+      style={{ gridArea: props.gridPosition }}>
       <p style={bgColor}>
         {props.sum}
       </p>
