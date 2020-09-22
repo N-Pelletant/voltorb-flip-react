@@ -13,7 +13,8 @@ class Leaderboard extends Component {
     try {
       const lb = await Interface.get('/leaderboard.json');
 
-      const bestPlayers = Object.entries(lb.data)
+      const bestPlayers = Object.values(lb.data)
+        .map(elem => [Object.keys(elem)[0], Object.values(elem)[0]])
         .sort((p1, p2) => p2[1] - p1[1])
         .splice(0, 5)
         .map((player, index) => {

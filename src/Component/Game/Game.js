@@ -4,6 +4,7 @@ import classes from './Game.module.css';
 import Distributions from '../../assets/Distributions';
 import Cockpit from './Cockpit/Cockpit';
 import Gameboard from './Gameboard/Gameboard';
+import Interface from '../../WebInterface';
 
 class Game extends Component {
   state = {
@@ -50,16 +51,12 @@ class Game extends Component {
       Array(25).fill(1)
     ).splice(0, 25);
 
-    const oldBoard = [...board]
     for (let i = 24; i > 0; i--) {
       const randomIndex = Math.floor(Math.random() * i);
-      let tmp;
-
-      tmp = board[i];
+      let tmp = board[i];
       board[i] = board[randomIndex];
       board[randomIndex] = tmp;
     }
-    console.log(board);
 
     board = board.map(elem => ({
       value: elem,
@@ -134,6 +131,25 @@ class Game extends Component {
         }
       }
     });
+  }
+
+  scoreUploadHandler = () => {
+    const oldState = this.state;
+
+    Interface
+      .post("/leaderboard.json", {
+        [oldState.player.name]: oldState.player.totalScore,
+      })
+      .then(() => {
+        this.setState({
+          player: {
+            name: oldState.player.name,
+            level: 1,
+            currentScore: 0,
+            totalScore: 0,
+          }
+        }, () => this.startGameHandler())
+      });
   }
 
   render() {
