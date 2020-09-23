@@ -12,7 +12,9 @@ function Modal(props) {
     <div
       className={classes.Modal}
       style={conditionalStyles}>
-      {props.children}
+      <div>
+        {props.children}
+      </div>
     </div>
   );
 }

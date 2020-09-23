@@ -13,6 +13,49 @@
   transition: transform 0.3s ease-out;
 }
 
-.Modal * {
-  margin: 10px 0;
+.Modal > div {
+  width: fit-content;
+  min-width: 50%;
+  height: fit-content;
+  min-height: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Modal > div > * {
+  text-align: center;
+  width: 80%;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.Modal input {
+  box-sizing: border-box;
+  text-align: center;
+  background-color: transparent;
+  color: black;
+  border: none;
+  border-bottom: 4px solid var(--bg-lightColor);
+  transition: border-bottom-color 100ms;
+}
+
+.Modal input:hover,
+.Modal input:focus {
+  border-bottom-color: var(--bg-darkColor);
+  outline: none;
+}
+
+.Modal button {
+  background-color: transparent;
+  color: black;
+  border: 2px solid var(--bg-darkColor);
+}
+
+.Modal button:hover {
+  background-color: var(--bg-darkColor);
+  color: white;
+  border: 2px solid var(--bg-darkColor);
 }

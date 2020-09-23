@@ -27,18 +27,20 @@ class Game extends Component {
   nameInputHandler = () => {
     const username = this.nameInput.current.value;
 
-    this.setState(oldState => (
-      {
-        inputUsername: !oldState.inputUsername,
-        loading: true,
-        player: {
-          ...oldState.player,
-          name: username
+    if (username.length > 0) {
+      this.setState(oldState => (
+        {
+          inputUsername: !oldState.inputUsername,
+          loading: true,
+          player: {
+            ...oldState.player,
+            name: username
+          }
         }
-      }
-    ));
+      ));
 
-    this.startGameHandler();
+      this.startGameHandler();
+    }
   };
 
   startGameHandler = () => {
@@ -156,20 +158,14 @@ class Game extends Component {
     return <div className={classes.Game}>
       {/* Username input */}
       <Modal show={this.state.inputUsername}>
-        <div>
-          <label>Choose your username :</label>
-          <input type="text" ref={this.nameInput} />
-          <button onClick={this.nameInputHandler}>Start game</button>
-        </div>
+        <input type="text" ref={this.nameInput} placeholder="Username" />
+        <button onClick={this.nameInputHandler}>Start game</button>
       </Modal>
       {/* End of game modal */}
       <Modal show={this.state.loading} reverse>
-        <div>
-          <p>{this.state.player.name} : {this.state.player.totalScore}</p>
-          <button onClick={this.scoreUploadHandler}>Send score</button>
-          or
-          <button onClick={this.startGameHandler}>Continue</button>
-        </div>
+        <p>Your score : {this.state.player.totalScore}</p>
+        <button onClick={this.startGameHandler}>Continue</button>
+        <button onClick={this.scoreUploadHandler}>Upload score</button>
       </Modal>
       {/* Game display */}
       <Cockpit {...this.state.player} />
