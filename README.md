@@ -3,53 +3,6 @@ Copy of a mini-game from the pokemon series in react
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-
-# Todo
-## App<br/>
-  - [ ] Get the possible cards distributions
-  - [x] Create architecture of files
-  - [ ] Create tests for each components
-## Rule card<br/>
-  - [ ] Style
-  - [ ] Create a static rule card
-  - [ ] Never update
-## Game<br/>
-  - [ ] Ask for username on start, username must be 5 letters long `/^[a-z]{5}$/i`
-  - [ ] Randomize cards from distribution in a 2D 5*5 array
-  - [ ] Create 2 lists of hints, one for each row, one for each color
-  - [ ] Give cards props to gameboard
-  - [ ] Finish game when max score is reach or bomb is returned
-  - [ ] Update current score on card flip
-  - [ ] Update total score on card flip
-  - [ ] Increment or decrement level of difficulty on win/lose
-  - [ ] Reset game state on game finished
-### Cockpit
-  - [ ] Style
-  - [ ] Display username
-  - [ ] Display current score and total score
-  - [ ] Display level of difficulty
-  - [ ] Update display of current score on card flip
-  - [ ] Update display of total score on game finished
-  - [ ] Update display of difficulty level on game finished
-### Gameboard component
-  - [ ] Style
-  - [ ] Propagate props (value, position, face-up) to cards
-  - [ ] Display cards using css grid
-  - [ ] Display hints using css grid
-### Card component
-  - [ ] Style
-  - [ ] Display correct side
-  - [ ] Update side displayed on click
-  - [ ] Display correct value
-  - [ ] Trigger update of game state and score when clicked
-  - [ ] Can be flagged like in minesweeper
-## Leaderboards<br/>
-  - [ ] Style
-  - [ ] get Leaderboards on page load
-  - [ ] set leaderboards when game is finished
-  - [ ] only update on get or set of leaderboards
-
-
 # Available Scripts
 
 In the project directory, you can run:
