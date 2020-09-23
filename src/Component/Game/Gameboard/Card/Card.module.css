@@ -10,6 +10,13 @@
   position: relative;
 }
 
+.Card .Flag {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
 .Card.flip {
   --rotateY: 180DEG;
 }

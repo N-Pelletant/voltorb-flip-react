@@ -19,8 +19,10 @@ class Gameboard extends Component {
           index={index}
           value={elem.value}
           faceUp={elem.faceUp}
+          flagged={elem.flagged}
           gridPosition={gridPosition.join('/')}
           clicked={this.props.cardClickedHandler}
+          flag={this.props.flagged}
         />
       )
     });

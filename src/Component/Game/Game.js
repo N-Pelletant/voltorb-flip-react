@@ -63,6 +63,7 @@ class Game extends Component {
     board = board.map(elem => ({
       value: elem,
       faceUp: false,
+      flagged: false,
     }));
 
     const maxScore = board.reduce((acc, elem) => (elem.value !== 0 ? acc * elem.value : acc), 1);
@@ -79,7 +80,7 @@ class Game extends Component {
     const board = this.state.board;
     const card = board[index];
 
-    if (!card.faceUp) {
+    if (!card.faceUp && !card.flagged) {
       if (card.value === 0) {
         this.gameLoseHandler();
         return;
@@ -102,6 +103,23 @@ class Game extends Component {
         if (this.state.player.currentScore === this.state.maxScore)
           this.gameWinHandler();
       });
+
+    }
+  }
+
+  flagCardHandler = (event, index) => {
+    event.preventDefault();
+
+    const board = this.state.board;
+    const card = board[index];
+
+    if (!card.faceUp) {
+      board[index] = {
+        ...card,
+        flagged: !card.flagged,
+      }
+
+      this.setState({ board: board });
 
     }
   }
@@ -169,7 +187,10 @@ class Game extends Component {
       </Modal>
       {/* Game display */}
       <Cockpit {...this.state.player} />
-      <Gameboard board={this.state.board} cardClickedHandler={this.updateScoreHandler} />
+      <Gameboard 
+        board={this.state.board} 
+        cardClickedHandler={this.updateScoreHandler} 
+        flagged={this.flagCardHandler}/>
     </div>;
   }
 }
