@@ -77,15 +77,12 @@ class Game extends Component {
   }
 
   updateScoreHandler = (index) => {
-    const board = this.state.board;
+    const oldState = this.state;
+    const playing = oldState.win === null;
+    const board = oldState.board;
     const card = board[index];
 
-    if (!card.faceUp && !card.flagged) {
-      if (card.value === 0) {
-        this.gameLoseHandler();
-        return;
-      }
-
+    if (playing && !card.faceUp && !card.flagged) {
       board[index] = {
         ...card,
         faceUp: true
@@ -100,10 +97,11 @@ class Game extends Component {
           }
         }
       ), () => {
-        if (this.state.player.currentScore === this.state.maxScore)
+        if (card.value === 0) {
+          this.gameLoseHandler();
+        } else if (this.state.player.currentScore === this.state.maxScore)
           this.gameWinHandler();
       });
-
     }
   }
 
@@ -127,7 +125,6 @@ class Game extends Component {
   gameLoseHandler = () => {
     this.setState(oldState => {
       return {
-        loading: true,
         win: false,
         player: {
           ...oldState.player,
@@ -135,13 +132,17 @@ class Game extends Component {
           level: oldState.player.level === 1 ? 1 : (oldState.player.level - 1),
         }
       }
+    }, () => {
+      setTimeout(
+        () => this.setState({ loading: true }),
+        1000
+      )
     });
   }
 
   gameWinHandler = () => {
     this.setState(oldState => {
       return {
-        loading: true,
         win: true,
         player: {
           ...oldState.player,
@@ -150,6 +151,11 @@ class Game extends Component {
           level: oldState.player.level === 8 ? 8 : (oldState.player.level + 1)
         }
       }
+    }, () => {
+      setTimeout(
+        () => this.setState({ loading: true }),
+        1000
+      )
     });
   }
 
@@ -184,16 +190,17 @@ class Game extends Component {
       </Modal>
       {/* End of game modal */}
       <Modal show={this.state.loading} reverse>
+        <p>{this.state.win ? "You win" : "You lose"}</p>
         <p>Your score : {this.state.player.totalScore}</p>
         <button onClick={this.startGameHandler}>Continue</button>
         <button onClick={this.scoreUploadHandler}>Upload score</button>
       </Modal>
       {/* Game display */}
       <Cockpit {...this.state.player} />
-      <Gameboard 
-        board={this.state.board} 
-        cardClickedHandler={this.updateScoreHandler} 
-        flagged={this.flagCardHandler}/>
+      <Gameboard
+        board={this.state.board}
+        cardClickedHandler={this.updateScoreHandler}
+        flagged={this.flagCardHandler} />
     </div>;
   }
 }
