@@ -168,7 +168,10 @@ class Game extends Component {
             currentScore: 0,
             totalScore: 0,
           }
-        }, () => this.startGameHandler())
+        }, () => {
+          this.props.updateLeaderboard()
+          this.startGameHandler()
+        })
       });
   }
 

@@ -1,59 +1,56 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import Interface from '../../WebInterface';
 import Spinner from './../UI/Spinner/Spinner';
 import classes from './Leaderboard.module.css';
 
-class Leaderboard extends Component {
-  state = {
-    leaders: null,
-    error: false
-  }
+function Leaderboard({ update }) {
+  const [leaders, setLeaders] = useState([]);
+  const [error, setError] = useState(null);
 
-  componentDidMount = async () => {
+  useEffect(() => {
     try {
-      const lb = await Interface.get('/leaderboard.json');
+      Interface
+        .get('/leaderboard.json')
+        .then(res => {
+          const bestPlayers = Object.values(res.data)
+            .map(elem => [Object.keys(elem)[0], Object.values(elem)[0]])
+            .sort((p1, p2) => p2[1] - p1[1])
+            .splice(0, 5)
+            .map((player, index) => {
+              return {
+                name: player[0],
+                score: parseInt(player[1]),
+                key: "leader" + index
+              }
+            });
 
-      const bestPlayers = Object.values(lb.data)
-        .map(elem => [Object.keys(elem)[0], Object.values(elem)[0]])
-        .sort((p1, p2) => p2[1] - p1[1])
-        .splice(0, 5)
-        .map((player, index) => {
-          return {
-            name: player[0],
-            score: parseInt(player[1]),
-            key: "bestPlayer" + index
-          }
-        });
-
-      this.setState({
-        leaders: bestPlayers
-      })
+          setLeaders(bestPlayers);
+        })
     } catch (e) {
-      this.setState({error: e})
+      setError(e);
     }
-  }
+  }, [update]);
 
-  render() {
-    let rows = <Spinner />;
 
-    if (this.state.error) {
-      rows = <p>{this.state.error.message}</p>
-    }
+  let rows = <Spinner />;
 
-    if (this.state.leaders) {
-      rows = this.state.leaders.map((leader, index) => (
-        <div key={leader.key}>
-          <p><span>{index + 1}</span> {leader.name}</p>
-          <p>{leader.score}</p>
-        </div>
-      ));
-    }
+  if (error)
+    rows = <p>{error.message}</p>
 
-    return <div className={classes.Leaderboard}>
+  if (leaders)
+    rows = leaders.map((leader, index) => (
+      <div key={leader.key}>
+        <p><span>{index + 1}</span> {leader.name}</p>
+        <p>{leader.score}</p>
+      </div>
+    ));
+
+  return (
+    <div className={classes.Leaderboard}>
       <h1>Leaderboard</h1>
       {rows}
-    </div>;
-  }
+    </div>
+  )
 }
 
 export default Leaderboard;
