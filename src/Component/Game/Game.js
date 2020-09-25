@@ -110,7 +110,6 @@ class Game extends Component {
 
     const board = this.state.board;
     const card = board[index];
-
     if (!card.faceUp) {
       board[index] = {
         ...card,
@@ -118,42 +117,44 @@ class Game extends Component {
       }
 
       this.setState({ board: board });
-
     }
   }
 
   gameLoseHandler = () => {
-    this.setState(oldState => {
-      return {
-        win: false,
-        player: {
-          ...oldState.player,
-          currentScore: 0,
-          level: oldState.player.level === 1 ? 1 : (oldState.player.level - 1),
-        }
-      }
+    const oldState = this.state;
+    this.setState({
+      win: false,
     }, () => {
       setTimeout(
-        () => this.setState({ loading: true }),
+        () => this.setState({
+          loading: true,
+          player: {
+            ...oldState.player,
+            currentScore: 0,
+            level: oldState.player.level === 1 ? 1 : (oldState.player.level - 1),
+          }
+        }),
         1000
       )
     });
   }
 
   gameWinHandler = () => {
-    this.setState(oldState => {
-      return {
-        win: true,
-        player: {
-          ...oldState.player,
-          totalScore: oldState.player.totalScore + oldState.player.currentScore,
-          currentScore: 0,
-          level: oldState.player.level === 8 ? 8 : (oldState.player.level + 1)
-        }
-      }
+    const oldState = this.state;
+
+    this.setState({
+      win: true
     }, () => {
       setTimeout(
-        () => this.setState({ loading: true }),
+        () => this.setState({
+          loading: true,
+          player: {
+            ...oldState.player,
+            totalScore: oldState.player.totalScore + oldState.player.currentScore,
+            currentScore: 0,
+            level: oldState.player.level === 8 ? 8 : (oldState.player.level + 1)
+          }
+        }),
         1000
       )
     });
