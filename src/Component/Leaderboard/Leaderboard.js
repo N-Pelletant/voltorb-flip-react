@@ -13,7 +13,7 @@ function Leaderboard({ update }) {
         .get('/leaderboard.json')
         .then(res => {
           const bestPlayers = Object.values(res.data)
-            .map(elem => [Object.keys(elem)[0], Object.values(elem)[0]])
+            .map(elem => Object.entries(elem)[0])
             .sort((p1, p2) => p2[1] - p1[1])
             .splice(0, 5)
             .map((player, index) => {
